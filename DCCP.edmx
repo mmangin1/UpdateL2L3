@@ -1,0 +1,382 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DCC_Migration_Data_CollectionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="dcc_biz">
+          <Key>
+            <PropertyRef Name="biz_id" />
+          </Key>
+          <Property Name="biz_id" Type="int" Nullable="false" />
+          <Property Name="biz_desc" Type="nvarchar" MaxLength="50" />
+          <Property Name="visible" Type="bit" />
+        </EntityType>
+        <EntityType Name="dcc_biz_domain">
+          <Key>
+            <PropertyRef Name="biz_domain_id" />
+          </Key>
+          <Property Name="biz_domain_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="biz_id" Type="int" />
+          <Property Name="domain_desc" Type="nvarchar" MaxLength="55" />
+        </EntityType>
+        <EntityType Name="dcc_plan">
+          <Key>
+            <PropertyRef Name="plan_id" />
+          </Key>
+          <Property Name="plan_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="domain_id" Type="int" />
+          <Property Name="quarter_id" Type="int" />
+          <Property Name="ecosystem_id" Type="int" />
+          <Property Name="instance_name" Type="varchar" MaxLength="50" />
+          <Property Name="project_type" Type="varchar" MaxLength="50" />
+          <Property Name="project_desc" Type="varchar" MaxLength="255" />
+          <Property Name="pessimistic_days" Type="int" />
+          <Property Name="most_likely_days" Type="int" />
+          <Property Name="optmistic_days" Type="int" />
+          <Property Name="pert_days" Type="int" />
+          <Property Name="app_proj_start_dt" Type="datetime" />
+          <Property Name="trans_planning_dt" Type="datetime" />
+          <Property Name="detail_doc_dt" Type="datetime" />
+          <Property Name="app_install_dt" Type="datetime" />
+          <Property Name="test_release_mgmt_dt" Type="datetime" />
+          <Property Name="sys_golive_dt" Type="datetime" />
+          <Property Name="server_decom_dt" Type="datetime" />
+          <Property Name="bc_dr_comments" Type="varchar" MaxLength="255" />
+          <Property Name="key_communication" Type="varchar" MaxLength="255" />
+          <Property Name="project_mgr_name" Type="varchar" MaxLength="50" />
+          <Property Name="project_mgr_phone" Type="varchar" MaxLength="50" />
+          <Property Name="move_package_biz_rep_name" Type="varchar" MaxLength="50" />
+          <Property Name="comments" Type="varchar" MaxLength="7000" />
+          <Property Name="move_package_id" Type="varchar" MaxLength="50" />
+          <Property Name="mtp_ovsd_id" Type="varchar" MaxLength="50" />
+          <Property Name="pmo_project_id" Type="varchar" MaxLength="50" />
+          <Property Name="status_id" Type="int" />
+          <Property Name="status_txt" Type="nvarchar" MaxLength="50" />
+          <Property Name="create_user" Type="char" MaxLength="50" />
+          <Property Name="create_ts" Type="datetime" />
+          <Property Name="last_update_ts" Type="datetime" />
+          <Property Name="last_update_user" Type="varchar" MaxLength="50" />
+          <Property Name="delete_p" Type="char" MaxLength="1" />
+          <Property Name="Proj_Scope" Type="char" MaxLength="3" />
+          <Property Name="Hardware_MBS_Commit" Type="datetime" />
+          <Property Name="ddr_gdba_action_p" Type="char" MaxLength="1" />
+          <Property Name="ddr_itio_action_p" Type="char" MaxLength="1" />
+          <Property Name="ddr_app_action_p" Type="char" MaxLength="1" />
+          <Property Name="ddr_nbr_reviews" Type="smallint" />
+          <Property Name="ddr_review_dt" Type="datetime" />
+          <Property Name="ddr_complete_p" Type="char" MaxLength="1" />
+          <Property Name="ddr_denied_p" Type="char" MaxLength="1" />
+          <Property Name="S2S_p" Type="varchar" MaxLength="1" />
+          <Property Name="package_priority" Type="int" />
+          <Property Name="default_need_by_week_id" Type="int" />
+          <Property Name="funding_pmo_project_id" Type="varchar" MaxLength="50" />
+          <Property Name="reporting_pmo_project_id" Type="varchar" MaxLength="50" />
+          <Property Name="package_priority_ts" Type="datetime" />
+          <Property Name="package_priority_user" Type="varchar" MaxLength="50" />
+          <Property Name="ipmDemandPkgNo" Type="varchar" MaxLength="50" />
+          <Property Name="ipmTempCust" Type="varchar" MaxLength="1" />
+          <Property Name="ipmComments" Type="varchar" MaxLength="512" />
+          <Property Name="Classification" Type="varchar" MaxLength="50" />
+          <Property Name="CompanyOwner" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="dcc_plan_application">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="plan_id" Type="int" />
+          <Property Name="epr_id" Type="int" />
+          <Property Name="instance_id" Type="int" />
+          <Property Name="move_package_id" Type="varchar" MaxLength="50" />
+          <Property Name="App_CI_Name" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DCC_Migration_Data_Collection.dbo.vwUpdateL2L3' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vwUpdateL2L3">
+          <Key>
+            <PropertyRef Name="plan_id" />
+            <PropertyRef Name="biz_domain_id" />
+          </Key>
+          <Property Name="plan_id" Type="int" Nullable="false" />
+          <Property Name="move_package_id" Type="varchar" MaxLength="50" />
+          <Property Name="epr_id" Type="int" />
+          <Property Name="biz_domain_id" Type="int" Nullable="false" />
+          <Property Name="biz_desc" Type="nvarchar" MaxLength="50" />
+          <Property Name="domain_desc" Type="nvarchar" MaxLength="55" />
+        </EntityType>
+        <Function Name="CreateL2L3" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NewL2" Type="varchar" Mode="In" />
+          <Parameter Name="NewL3" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="DeleteUnusedL2L3" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="UpdateMBSBusinessUnit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="DCC_Migration_Data_CollectionModelStoreContainer">
+          <EntitySet Name="dcc_biz" EntityType="Self.dcc_biz" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="dcc_biz_domain" EntityType="Self.dcc_biz_domain" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="dcc_plan" EntityType="Self.dcc_plan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="dcc_plan_application" EntityType="Self.dcc_plan_application" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vwUpdateL2L3" EntityType="Self.vwUpdateL2L3" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vwUpdateL2L3].[plan_id] AS [plan_id], 
+    [vwUpdateL2L3].[move_package_id] AS [move_package_id], 
+    [vwUpdateL2L3].[epr_id] AS [epr_id], 
+    [vwUpdateL2L3].[biz_domain_id] AS [biz_domain_id], 
+    [vwUpdateL2L3].[biz_desc] AS [biz_desc], 
+    [vwUpdateL2L3].[domain_desc] AS [domain_desc]
+    FROM [dbo].[vwUpdateL2L3] AS [vwUpdateL2L3]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DCC_Migration_Data_CollectionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="dcc_biz">
+          <Key>
+            <PropertyRef Name="biz_id" />
+          </Key>
+          <Property Name="biz_id" Type="Int32" Nullable="false" />
+          <Property Name="biz_desc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="visible" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="dcc_biz_domain">
+          <Key>
+            <PropertyRef Name="biz_domain_id" />
+          </Key>
+          <Property Name="biz_domain_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="biz_id" Type="Int32" />
+          <Property Name="domain_desc" Type="String" MaxLength="55" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="dcc_plan_application">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="plan_id" Type="Int32" />
+          <Property Name="epr_id" Type="Int32" />
+          <Property Name="instance_id" Type="Int32" />
+          <Property Name="move_package_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="App_CI_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="DCC_Migration_Data_CollectionEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="dcc_biz" EntityType="Self.dcc_biz" />
+          <EntitySet Name="dcc_biz_domain" EntityType="Self.dcc_biz_domain" />
+          <EntitySet Name="dcc_plan_application" EntityType="Self.dcc_plan_application" />
+          <EntitySet Name="vwUpdateL2L3" EntityType="DCC_Migration_Data_CollectionModel.vwUpdateL2L3" />
+          <FunctionImport Name="CreateL2L3" ReturnType="Collection(Decimal)">
+            <Parameter Name="NewL2" Mode="In" Type="String" />
+            <Parameter Name="NewL3" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="dcc_plan" EntityType="DCC_Migration_Data_CollectionModel.dcc_plan" />
+          <FunctionImport Name="UpdateMBSBusinessUnit" />
+          <FunctionImport Name="DeleteUnusedL2L3" />
+        </EntityContainer>
+        <EntityType Name="vwUpdateL2L3">
+          <Key>
+            <PropertyRef Name="plan_id" />
+            <PropertyRef Name="biz_domain_id" />
+          </Key>
+          <Property Name="plan_id" Type="Int32" Nullable="false" />
+          <Property Name="move_package_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="epr_id" Type="Int32" />
+          <Property Name="biz_domain_id" Type="Int32" Nullable="false" />
+          <Property Name="biz_desc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="domain_desc" Type="String" MaxLength="55" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="dcc_plan">
+          <Key>
+            <PropertyRef Name="plan_id" />
+          </Key>
+          <Property Name="plan_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="domain_id" Type="Int32" />
+          <Property Name="quarter_id" Type="Int32" />
+          <Property Name="ecosystem_id" Type="Int32" />
+          <Property Name="instance_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="project_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="project_desc" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="pessimistic_days" Type="Int32" />
+          <Property Name="most_likely_days" Type="Int32" />
+          <Property Name="optmistic_days" Type="Int32" />
+          <Property Name="pert_days" Type="Int32" />
+          <Property Name="app_proj_start_dt" Type="DateTime" Precision="3" />
+          <Property Name="trans_planning_dt" Type="DateTime" Precision="3" />
+          <Property Name="detail_doc_dt" Type="DateTime" Precision="3" />
+          <Property Name="app_install_dt" Type="DateTime" Precision="3" />
+          <Property Name="test_release_mgmt_dt" Type="DateTime" Precision="3" />
+          <Property Name="sys_golive_dt" Type="DateTime" Precision="3" />
+          <Property Name="server_decom_dt" Type="DateTime" Precision="3" />
+          <Property Name="bc_dr_comments" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="key_communication" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="project_mgr_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="project_mgr_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="move_package_biz_rep_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="comments" Type="String" MaxLength="7000" FixedLength="false" Unicode="false" />
+          <Property Name="move_package_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="mtp_ovsd_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pmo_project_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="status_id" Type="Int32" />
+          <Property Name="status_txt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="create_user" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="create_ts" Type="DateTime" Precision="3" />
+          <Property Name="last_update_ts" Type="DateTime" Precision="3" />
+          <Property Name="last_update_user" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="delete_p" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Proj_Scope" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="Hardware_MBS_Commit" Type="DateTime" Precision="3" />
+          <Property Name="ddr_gdba_action_p" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ddr_itio_action_p" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ddr_app_action_p" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ddr_nbr_reviews" Type="Int16" />
+          <Property Name="ddr_review_dt" Type="DateTime" Precision="3" />
+          <Property Name="ddr_complete_p" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ddr_denied_p" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="S2S_p" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="package_priority" Type="Int32" />
+          <Property Name="default_need_by_week_id" Type="Int32" />
+          <Property Name="funding_pmo_project_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="reporting_pmo_project_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="package_priority_ts" Type="DateTime" Precision="3" />
+          <Property Name="package_priority_user" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ipmDemandPkgNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ipmTempCust" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="ipmComments" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+          <Property Name="Classification" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyOwner" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DCC_Migration_Data_CollectionModelStoreContainer" CdmEntityContainer="DCC_Migration_Data_CollectionEntities">
+          <EntitySetMapping Name="dcc_biz">
+            <EntityTypeMapping TypeName="DCC_Migration_Data_CollectionModel.dcc_biz">
+              <MappingFragment StoreEntitySet="dcc_biz">
+                <ScalarProperty Name="biz_id" ColumnName="biz_id" />
+                <ScalarProperty Name="biz_desc" ColumnName="biz_desc" />
+                <ScalarProperty Name="visible" ColumnName="visible" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dcc_biz_domain">
+            <EntityTypeMapping TypeName="DCC_Migration_Data_CollectionModel.dcc_biz_domain">
+              <MappingFragment StoreEntitySet="dcc_biz_domain">
+                <ScalarProperty Name="biz_domain_id" ColumnName="biz_domain_id" />
+                <ScalarProperty Name="biz_id" ColumnName="biz_id" />
+                <ScalarProperty Name="domain_desc" ColumnName="domain_desc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dcc_plan_application">
+            <EntityTypeMapping TypeName="DCC_Migration_Data_CollectionModel.dcc_plan_application">
+              <MappingFragment StoreEntitySet="dcc_plan_application">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="plan_id" ColumnName="plan_id" />
+                <ScalarProperty Name="epr_id" ColumnName="epr_id" />
+                <ScalarProperty Name="instance_id" ColumnName="instance_id" />
+                <ScalarProperty Name="move_package_id" ColumnName="move_package_id" />
+                <ScalarProperty Name="App_CI_Name" ColumnName="App_CI_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwUpdateL2L3">
+            <EntityTypeMapping TypeName="DCC_Migration_Data_CollectionModel.vwUpdateL2L3">
+              <MappingFragment StoreEntitySet="vwUpdateL2L3">
+                <ScalarProperty Name="domain_desc" ColumnName="domain_desc" />
+                <ScalarProperty Name="biz_desc" ColumnName="biz_desc" />
+                <ScalarProperty Name="biz_domain_id" ColumnName="biz_domain_id" />
+                <ScalarProperty Name="epr_id" ColumnName="epr_id" />
+                <ScalarProperty Name="move_package_id" ColumnName="move_package_id" />
+                <ScalarProperty Name="plan_id" ColumnName="plan_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CreateL2L3" FunctionName="DCC_Migration_Data_CollectionModel.Store.CreateL2L3" />
+          <EntitySetMapping Name="dcc_plan">
+            <EntityTypeMapping TypeName="DCC_Migration_Data_CollectionModel.dcc_plan">
+              <MappingFragment StoreEntitySet="dcc_plan">
+                <ScalarProperty Name="CompanyOwner" ColumnName="CompanyOwner" />
+                <ScalarProperty Name="Classification" ColumnName="Classification" />
+                <ScalarProperty Name="ipmComments" ColumnName="ipmComments" />
+                <ScalarProperty Name="ipmTempCust" ColumnName="ipmTempCust" />
+                <ScalarProperty Name="ipmDemandPkgNo" ColumnName="ipmDemandPkgNo" />
+                <ScalarProperty Name="package_priority_user" ColumnName="package_priority_user" />
+                <ScalarProperty Name="package_priority_ts" ColumnName="package_priority_ts" />
+                <ScalarProperty Name="reporting_pmo_project_id" ColumnName="reporting_pmo_project_id" />
+                <ScalarProperty Name="funding_pmo_project_id" ColumnName="funding_pmo_project_id" />
+                <ScalarProperty Name="default_need_by_week_id" ColumnName="default_need_by_week_id" />
+                <ScalarProperty Name="package_priority" ColumnName="package_priority" />
+                <ScalarProperty Name="S2S_p" ColumnName="S2S_p" />
+                <ScalarProperty Name="ddr_denied_p" ColumnName="ddr_denied_p" />
+                <ScalarProperty Name="ddr_complete_p" ColumnName="ddr_complete_p" />
+                <ScalarProperty Name="ddr_review_dt" ColumnName="ddr_review_dt" />
+                <ScalarProperty Name="ddr_nbr_reviews" ColumnName="ddr_nbr_reviews" />
+                <ScalarProperty Name="ddr_app_action_p" ColumnName="ddr_app_action_p" />
+                <ScalarProperty Name="ddr_itio_action_p" ColumnName="ddr_itio_action_p" />
+                <ScalarProperty Name="ddr_gdba_action_p" ColumnName="ddr_gdba_action_p" />
+                <ScalarProperty Name="Hardware_MBS_Commit" ColumnName="Hardware_MBS_Commit" />
+                <ScalarProperty Name="Proj_Scope" ColumnName="Proj_Scope" />
+                <ScalarProperty Name="delete_p" ColumnName="delete_p" />
+                <ScalarProperty Name="last_update_user" ColumnName="last_update_user" />
+                <ScalarProperty Name="last_update_ts" ColumnName="last_update_ts" />
+                <ScalarProperty Name="create_ts" ColumnName="create_ts" />
+                <ScalarProperty Name="create_user" ColumnName="create_user" />
+                <ScalarProperty Name="status_txt" ColumnName="status_txt" />
+                <ScalarProperty Name="status_id" ColumnName="status_id" />
+                <ScalarProperty Name="pmo_project_id" ColumnName="pmo_project_id" />
+                <ScalarProperty Name="mtp_ovsd_id" ColumnName="mtp_ovsd_id" />
+                <ScalarProperty Name="move_package_id" ColumnName="move_package_id" />
+                <ScalarProperty Name="comments" ColumnName="comments" />
+                <ScalarProperty Name="move_package_biz_rep_name" ColumnName="move_package_biz_rep_name" />
+                <ScalarProperty Name="project_mgr_phone" ColumnName="project_mgr_phone" />
+                <ScalarProperty Name="project_mgr_name" ColumnName="project_mgr_name" />
+                <ScalarProperty Name="key_communication" ColumnName="key_communication" />
+                <ScalarProperty Name="bc_dr_comments" ColumnName="bc_dr_comments" />
+                <ScalarProperty Name="server_decom_dt" ColumnName="server_decom_dt" />
+                <ScalarProperty Name="sys_golive_dt" ColumnName="sys_golive_dt" />
+                <ScalarProperty Name="test_release_mgmt_dt" ColumnName="test_release_mgmt_dt" />
+                <ScalarProperty Name="app_install_dt" ColumnName="app_install_dt" />
+                <ScalarProperty Name="detail_doc_dt" ColumnName="detail_doc_dt" />
+                <ScalarProperty Name="trans_planning_dt" ColumnName="trans_planning_dt" />
+                <ScalarProperty Name="app_proj_start_dt" ColumnName="app_proj_start_dt" />
+                <ScalarProperty Name="pert_days" ColumnName="pert_days" />
+                <ScalarProperty Name="optmistic_days" ColumnName="optmistic_days" />
+                <ScalarProperty Name="most_likely_days" ColumnName="most_likely_days" />
+                <ScalarProperty Name="pessimistic_days" ColumnName="pessimistic_days" />
+                <ScalarProperty Name="project_desc" ColumnName="project_desc" />
+                <ScalarProperty Name="project_type" ColumnName="project_type" />
+                <ScalarProperty Name="instance_name" ColumnName="instance_name" />
+                <ScalarProperty Name="ecosystem_id" ColumnName="ecosystem_id" />
+                <ScalarProperty Name="quarter_id" ColumnName="quarter_id" />
+                <ScalarProperty Name="domain_id" ColumnName="domain_id" />
+                <ScalarProperty Name="plan_id" ColumnName="plan_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="UpdateMBSBusinessUnit" FunctionName="DCC_Migration_Data_CollectionModel.Store.UpdateMBSBusinessUnit" />
+          <FunctionImportMapping FunctionImportName="DeleteUnusedL2L3" FunctionName="DCC_Migration_Data_CollectionModel.Store.DeleteUnusedL2L3" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
